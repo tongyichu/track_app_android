@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:gravity="center_vertical" android:paddingStart="4dp" android:paddingEnd="16dp">
+        <ImageView android:id="@+id/ivBack" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:src="@drawable/ic_back" />
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="个人中心" android:textColor="#333333" android:textSize="18sp" android:textStyle="bold" />
+        <ImageView android:id="@+id/ivSettings" android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_settings" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_horizontal" android:orientation="vertical" android:paddingTop="24dp" android:paddingBottom="24dp">
+        <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/ivAvatar" android:layout_width="80dp" android:layout_height="80dp" android:src="@drawable/ic_default_avatar" />
+        <TextView android:id="@+id/tvNickname" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textColor="#333333" android:textSize="20sp" android:textStyle="bold" />
+        <TextView android:id="@+id/tvSignature" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:textColor="#999999" android:textSize="13sp" />
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#F0F0F0" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="24dp">
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <TextView android:id="@+id/tvTotalDistance" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0 km" android:textColor="#FF4081" android:textSize="22sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="总里程" android:textColor="#999999" android:textSize="12sp" android:layout_marginTop="4dp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <TextView android:id="@+id/tvTotalDuration" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0h" android:textColor="#333333" android:textSize="22sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="总时长" android:textColor="#999999" android:textSize="12sp" android:layout_marginTop="4dp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+            <TextView android:id="@+id/tvTrackCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="#333333" android:textSize="22sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="轨迹数" android:textColor="#999999" android:textSize="12sp" android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,39 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.outdoortrack">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 网络与定位权限：高德地图与轨迹采样占位 -->
+    <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- 存储权限（导出图片） -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- 相机权限（头像拍照） -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 前台服务权限（轨迹记录） -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
     <application
-        android:name=".OutdoorTrackApplication"
+        android:name=".TrailApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OutdoorTrack">
+        android:theme="@style/Theme.OutdoorTrail"
+        android:usesCleartextTraffic="true">
 
-        <!-- 高德地图 SDK Key，通过 manifestPlaceholders 注入占位值 -->
+        <!-- 高德地图Key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="${AMAP_API_KEY}" />
 
+        <!-- 登录页 -->
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".ui.login.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <!-- 首页 -->
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 搜索页 -->
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 正在记录页 -->
+        <activity
+            android:name=".ui.recording.RecordingActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar"
+            android:screenOrientation="portrait" />
+
+        <!-- 轨迹记录结束总结页 -->
+        <activity
+            android:name=".ui.summary.TrackSummaryActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 他人轨迹详情页 -->
+        <activity
+            android:name=".ui.detail.TrackDetailActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 上传成功反馈页 -->
+        <activity
+            android:name=".ui.feedback.UploadSuccessActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 个人中心页 -->
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 设置页 -->
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:theme="@style/Theme.OutdoorTrail.NoActionBar" />
+
+        <!-- 轨迹记录前台服务 -->
+        <service
+            android:name=".service.TrackRecordService"
+            android:foregroundServiceType="location"
+            android:exported="false" />
+
+        <!-- 微信回调Activity -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTask" />
+
+    </application>
 </manifest>

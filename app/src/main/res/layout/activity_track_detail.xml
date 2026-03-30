@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 他人轨迹详情页布局 -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp">
+            <ImageView android:id="@+id/ivBack" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:src="@drawable/ic_back" />
+            <TextView android:id="@+id/tvTitle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#333333" android:textSize="18sp" android:textStyle="bold" />
+        </LinearLayout>
+
+        <com.amap.api.maps.MapView android:id="@+id/mapView" android:layout_width="match_parent" android:layout_height="240dp" />
+
+        <!-- 轨迹摘要信息 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_vertical">
+                <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/ivUserAvatar" android:layout_width="40dp" android:layout_height="40dp" />
+                <TextView android:id="@+id/tvUserName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="12dp" android:textColor="#333333" android:textSize="15sp" />
+                <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+                <TextView android:id="@+id/tvCollectCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#999999" android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:orientation="horizontal">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tvDistance" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#FF4081" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="距离" android:textColor="#999999" android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tvDuration" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#333333" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="时长" android:textColor="#999999" android:textSize="12sp" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                    <TextView android:id="@+id/tvElevation" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#333333" android:textSize="20sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="爬升" android:textColor="#999999" android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvRegion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textColor="#666666" android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- 操作按钮 -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="16dp">
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnNavigate" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginEnd="8dp" android:text="使用轨迹导航" android:textColor="#FFFFFF" android:textSize="14sp" app:backgroundTint="#FF4081" app:cornerRadius="24dp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/btnCollect" android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="收藏轨迹" android:textSize="14sp" app:cornerRadius="24dp" style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

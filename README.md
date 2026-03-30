@@ -1,66 +1,130 @@
-# 户外轨迹 APP - Android Kotlin 客户端
+# 户外轨迹 App - Android 客户端
 
-本项目是“户外轨迹 APP”的全新原生 Android 客户端实现，与既有的 React Native 客户端并存。它遵循现代 Android 开发实践，采用 Kotlin、MVVM 架构和 Jetpack 组件。
+基于 Kotlin + MVVM + Retrofit + Glide 的安卓客户端。
 
-## 一、环境要求
+## 技术栈
 
-- **Android Studio**: `Hedgehog | 2023.1.1` 或更高版本。
-- **JDK**: `17` 或更高版本。
-- **Gradle**: 项目使用的 Gradle Wrapper `8.2`。
-- **Android SDK**:
-  - `minSdk`: `24` (Android 7.0)
-  - `targetSdk`: `34` (Android 14)
-  - `compileSdk`: `34`
+| 组件 | 技术 |
+|------|------|
+| 语言 | Kotlin |
+| 架构 | MVVM (ViewModel + LiveData) |
+| 网络 | Retrofit2 + OkHttp4 + Gson |
+| 图片 | Glide 4 |
+| 地图 | 高德地图 3D SDK + 定位SDK |
+| 登录 | 微信SDK + 手机号验证码 |
+| 存储 | EncryptedSharedPreferences |
+| UI | Material Design Components |
 
-## 二、配置项
+## 项目结构
 
-在首次运行项目前，您需要配置必要的 API Key 和后端地址。
+```
+app/src/main/java/com/outdoor/trail/
+├── TrailApp.kt                      # Application
+├── data/
+│   ├── local/TokenManager.kt        # Token安全存储
+│   ├── model/Models.kt              # 数据模型
+│   ├── remote/
+│   │   ├── ApiClient.kt             # Retrofit客户端
+│   │   └── ApiService.kt            # API接口定义
+│   └── repository/
+│       ├── TrackRepository.kt       # 轨迹数据仓库
+│       └── UserRepository.kt        # 用户数据仓库
+├── service/
+│   └── TrackRecordService.kt        # 轨迹记录前台服务
+├── ui/
+│   ├── login/                        # 登录页
+│   ├── home/                         # 首页（含TrackListAdapter）
+│   ├── search/                       # 搜索页
+│   ├── recording/                    # 正在记录页
+│   ├── summary/                      # 轨迹结束总结页
+│   ├── detail/                       # 他人轨迹详情页
+│   ├── feedback/                     # 上传成功反馈页
+│   ├── profile/                      # 个人中心页
+│   └── settings/                     # 设置页
+└── wxapi/
+    └── WXEntryActivity.kt            # 微信回调
+```
 
-1. **创建 `local.properties`**
+## 页面对照
 
-   在项目根目录（`android-client-kotlin/`）下，复制 `local.properties.example` 文件并重命名为 `local.properties`。
+| 页面 | Activity | ViewModel | 布局文件 |
+|------|----------|-----------|----------|
+| 登录页 | LoginActivity | LoginViewModel | activity_login.xml |
+| 首页 | HomeActivity | HomeViewModel | activity_home.xml |
+| 搜索页 | SearchActivity | SearchViewModel | activity_search.xml |
+| 正在记录 | RecordingActivity | RecordingViewModel | activity_recording.xml |
+| 轨迹总结 | TrackSummaryActivity | TrackSummaryViewModel | activity_track_summary.xml |
+| 他人轨迹详情 | TrackDetailActivity | TrackDetailViewModel | activity_track_detail.xml |
+| 上传成功 | UploadSuccessActivity | - | activity_upload_success.xml |
+| 个人中心 | ProfileActivity | ProfileViewModel | activity_profile.xml |
+| 设置 | SettingsActivity | SettingsViewModel | activity_settings.xml |
 
-2. **填写配置值**
+## 配置说明
 
-   打开 `local.properties` 并填入以下字段的真实值：
+### 1. 高德地图Key
 
-   ```properties
-   # 后端 API 基础地址
-   API_BASE_URL=https://your-api-base-url.example.com/
+在 `local.properties` 中添加：
+```properties
+AMAP_API_KEY=your_amap_key
+```
 
-   # 高德地图 Android SDK Key
-   AMAP_API_KEY=your-amap-api-key
+### 2. 微信AppID
 
-   # 客户端版本号（用于 Header）
-   X_CLIENT_VERSION=1.0.0
-   ```
+在 `local.properties` 中添加：
+```properties
+WECHAT_APP_ID=your_wechat_app_id
+```
 
-3. **微信登录占位说明**
+### 3. 服务端地址
 
-   微信登录功能目前仅为占位实现，未集成真实 SDK。如需开发，请参考微信开放平台文档，并将 `AppID` 和 `Universal Link` 配置到项目中，通常通过 `BuildConfig` 或安全存储方式管理。
+在 `local.properties` 中添加：
+```properties
+BASE_URL=http://your-server-ip:8080
+```
 
-## 三、运行步骤
+## 编译运行
 
-1. **打开项目**: 使用 Android Studio 打开 `android-client-kotlin/` 目录。
-2. **同步 Gradle**: Android Studio 会自动提示同步 Gradle。等待依赖下载完成。
-3. **构建并运行**:
-   - 选择一个模拟器或连接一台物理设备。
-   - 点击 Android Studio 工具栏中的 "Run 'app'" 按钮（或使用快捷键 `Shift+F10`）。
+### 前置条件
+- Android Studio Hedgehog+ (2023.1+)
+- JDK 17
+- Android SDK 34
+- Gradle 8.x
 
-应用将安装并启动。如果未检测到有效登录会话，将首先显示登录页面。
+### 步骤
 
-## 四、页面与接口对应关系
+1. 用 Android Studio 打开 `outdoor-trail-android/` 目录
+2. 在 `local.properties` 中配置 `AMAP_API_KEY` 和 `WECHAT_APP_ID`
+3. Sync Gradle
+4. 连接Android设备或启动模拟器
+5. Run → Run 'app'
 
-| 页面                  | 主要接口 (Method & Path)                                 | 描述                                                           |
-| --------------------- | ------------------------------------------------------ | -------------------------------------------------------------- |
-| **登录页**            | - (本地处理)                                           | 手机号登录（本地 Session），微信登录占位。                       |
-| **首页**              | `GET /api/track/recommend/list`                          | 展示推荐轨迹。                                                 |
-| **首页-正在记录**     | `GET /api/track/running?user_id=xxx`                     | 检测到未结束轨迹时展示该状态，按钮变为“正在记录”。               |
-| **开始记录**          | `POST /api/track/create`                                 | 点击“开始记录”后调用，创建新轨迹并跳转。                     |
-| **轨迹搜索**          | `GET /api/track/search/list`                             | 根据关键词搜索轨迹。                                           |
-| **正在记录详情**      | `GET /api/track/{id}/map`, `GET /api/track/{id}/detail`  | 展示实时地图与信息，可暂停/继续/长按结束。                     |
-| **轨迹记录结束总结**  | 同上                                                   | 展示地图与汇总信息，可导出图片或上传云端。                     |
-| **上传到云端**        | `POST /api/track/{id}/upload_cloud`                      | 上传轨迹到云端后，进入成功反馈页。                             |
-| **他人轨迹详情**      | `GET /api/track/{id}/map`, `.../summary`, `.../collect` | 展示他人轨迹、收藏状态，并可“使用轨迹导航”。                   |
-| **个人中心**          | `GET /api/user/{uid}/detail`                             | 展示用户昵称、头像、签名。                                       |
-| **设置**              | `PUT /api/user/profile/*`                                | 修改头像、用户名、签名、语言；退出登录。                         |
+## 核心设计决策
+
+### 登录有效期
+- 使用 `EncryptedSharedPreferences` 加密存储JWT Token
+- 记录最后活跃时间，超过15天未打开自动退出
+- 每次打开App时更新活跃时间戳
+
+### 轨迹记录
+- 使用前台服务 `TrackRecordService` 持续定位
+- 高德融合定位：GNSS + WiFi + 基站 + 传感器
+- 2秒采样间隔，精度>50m自动丢弃
+- 支持暂停/继续/结束
+
+### 网络层
+- 所有请求自动携带公共Header（X-User-ID等5个字段）
+- Repository层统一包装 `Result<T>` 返回值
+- 支持JWT认证和开发模式X-User-ID认证
+
+### 定位技术
+- 基于高德SDK的融合定位能力
+- 集成GNSS（GPS/北斗/GLONASS/Galileo）+ AGNSS + WiFi + 基站 + 传感器
+- 高精度模式，GPS优先
+- 支持后台持续定位（前台服务+FOREGROUND_SERVICE_LOCATION）
+
+## 响应式布局
+
+- 使用 `ConstraintLayout` 实现自适应布局
+- 轨迹列表使用 `RecyclerView` + `DiffUtil` 高效更新
+- 地图区域支持全屏/半屏切换
+- 适配不同屏幕尺寸和分辨率

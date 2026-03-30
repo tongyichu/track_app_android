@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
-    <color name="teal_200">#03DAC5</color>
-    <color name="black">#000000</color>
+    <color name="primary">#FF4081</color>
+    <color name="primary_dark">#F50057</color>
+    <color name="accent">#FF4081</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray_333">#333333</color>
+    <color name="gray_666">#666666</color>
+    <color name="gray_999">#999999</color>
+    <color name="bg_gray">#F5F5F5</color>
+    <color name="wechat_green">#07C160</color>
 </resources>

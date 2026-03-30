@@ -1,15 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">户外轨迹</string>
-    <string name="login_title">登录</string>
-    <string name="phone_login">手机号登录</string>
-    <string name="wechat_login">微信登录（占位）</string>
-    <string name="home_title">首页</string>
-    <string name="search_title">轨迹搜索</string>
-    <string name="recording_title">正在记录</string>
-    <string name="summary_title">轨迹记录结束总结</string>
-    <string name="detail_title">他人轨迹详情</string>
-    <string name="upload_success_title">上传成功</string>
-    <string name="profile_title">个人中心</string>
-    <string name="settings_title">设置</string>
 </resources>
