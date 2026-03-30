@@ -1,0 +1,9 @@
+# 本文件为示例，不会被 Gradle 自动读取
+# 实际项目中请复制为 local.properties 并填写真实值，切勿提交到版本库
+
+API_BASE_URL=https://your-api-base-url.example.com/
+AMAP_API_KEY=your-amap-api-key
+X_CLIENT_VERSION=1.0.0
+
+# 可选：默认客户端语言（例如 zh-CN / en-US）
+X_CLIENT_LANG=zh-CN
